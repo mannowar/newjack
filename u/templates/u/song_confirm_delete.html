@@ -34,8 +34,9 @@
         {% csrf_token %}
         <p>Are you sure you want to delete {{ song.song_title }}</p>
         <button type="submit" class="btn btn-danger">Delete</button>
-        <a href="{% url 'u:USong' song.id %}" class="btn btn-default">Cancel</a>
+            <a onclick="window.history.back();" class="btn btn-default">Cancel</a>
         </form>
+
         </div>
 
 

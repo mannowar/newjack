@@ -10,25 +10,38 @@
         <link type="text/css" href="{% static 'css/application.css' %}" rel="stylesheet">
         <link type="text/css" href="{% static 'css/contextmenu.css' %}" rel="stylesheet">
 
-{% endblock %}
+    {% endblock %}
 
     {% block js %}
         {{ block.super }}
 
-
     {% endblock %}
 
     {% block title %}Your HP{% endblock %}
-    {% block messages %}
-        <div class="col-xs-8 col-xs-offset-2">
-            {{ block.super }}
-        </div>
-    {% endblock %}
+
 
     {% block content %}
         {{ block.super }}
 
         <div class="" role="main">
+            {% block messages %}
+    <div>
+        {% for message in messages %}
+            {% if message.tags %}
+                {% if message.tags == 'error' %}
+                    <div class="alert alert-danger">{{ message }}<a class="btn" onclick="
+                $('.alert').click(function () {$(this).parent().remove(); });
+                ">X</a></div>
+                {% else %}
+                <div class="alert alert-{{ message.tags }}">{{ message }}<a class="btn" onclick="
+                $('.alert').click(function () {$(this).parent().remove(); });
+                ">X</a></div>
+                {{ message.tag }}
+                {% endif %}
+            {% endif %}
+        {% endfor %}
+        </div>
+    {% endblock %}
             {{ form.non_field_errors }}
 
                 <div class="col-xs-12">
